@@ -9,7 +9,7 @@
     "start": "node dist/index.js",
     "start-chat": "node dist/chat.js",
     "dev": "ts-node --esm src/index.ts",
-    "chat": "ts-node --esm src/chat.ts"
+    "chat": "tsx src/chat.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-code": "^1.0.55"
@@ -17,7 +17,8 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "tsx": "^4.0.0"
   },
   "engines": {
     "node": ">=18.0.0"

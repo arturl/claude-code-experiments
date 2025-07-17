@@ -72,6 +72,11 @@ class SimpleChat {
 
   private async promptUser(): Promise<string> {
     return new Promise((resolve) => {
+      if (this.rl.closed) {
+        resolve('q');
+        return;
+      }
+      
       this.rl.question('> ', (answer) => {
         resolve(answer.trim());
       });
