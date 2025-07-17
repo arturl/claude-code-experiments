@@ -1,0 +1,25 @@
+{
+  "name": "claude-code-sdk-example",
+  "version": "1.0.0",
+  "description": "Example TypeScript project using Claude Code SDK",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start-chat": "node dist/chat.js",
+    "dev": "ts-node --esm src/index.ts",
+    "chat": "ts-node --esm src/chat.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.55"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
