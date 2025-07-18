@@ -30,16 +30,21 @@ class SimpleChat {
       prompt: fullPrompt,
       abortController: new AbortController(),
       options: {
-        maxTurns: 3,
+        maxTurns: 10, // Increased to allow for tool usage
       },
     })) {
       messages.push(message);
     }
 
-    // Extract the actual response from the assistant
+    // Extract the final result after all tools have been executed
+    const resultMessage = messages.find(msg => msg.type === 'result');
+    if (resultMessage && 'result' in resultMessage) {
+      return resultMessage.result;
+    }
+    
+    // Fallback to assistant message if no result found
     const assistantMessage = messages.find(msg => msg.type === 'assistant');
     if (assistantMessage && assistantMessage.message && assistantMessage.message.content) {
-      // Get the text content from the message
       const content = assistantMessage.message.content;
       if (Array.isArray(content)) {
         const textContent = content.find(c => c.type === 'text');
@@ -72,7 +77,7 @@ class SimpleChat {
 
   private async promptUser(): Promise<string> {
     return new Promise((resolve) => {
-      if (this.rl.closed) {
+      if (process.stdin.destroyed) {
         resolve('q');
         return;
       }
