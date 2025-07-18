@@ -31,6 +31,7 @@ class SimpleChat {
       abortController: new AbortController(),
       options: {
         maxTurns: 10, // Increased to allow for tool usage
+        permissionMode: 'bypassPermissions', // Enable permissive mode
       },
     })) {
       messages.push(message);
